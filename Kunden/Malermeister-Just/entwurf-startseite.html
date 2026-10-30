@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Malermeister Just – Entwurf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: geteilte Bühne – links Farbe (Maler), rechts Messwerte (Gutachten); darunter zwei gleichwertige Wege */
+:root{
+  --ink:#14262E;       /* Petrol-Tinte */
+  --paper:#F6F5F1;     /* Kalkweiß */
+  --stone:#5E6B70;     /* Schiefergrau */
+  --line:#D9DCD8;
+  --paint:#E2A23B;     /* Ocker – Akzent Malerarbeiten */
+  --proof:#2F6B7A;     /* Petrol – Akzent Gutachten */
+  --card:#FFFFFF;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--f-body)}
+img{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--paint);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);line-height:1.08;text-wrap:balance;margin:0}
+.label{font:500 .75rem/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--stone)}
+
+/* Demo-Hinweis */
+.demo{background:var(--ink);color:var(--paper);font:500 .75rem/1.4 var(--f-mono);letter-spacing:.06em;text-align:center;padding:8px 16px}
+
+/* Kopf */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-mark{width:38px;height:38px;border-radius:50%;background:conic-gradient(var(--paint) 0 25%,var(--proof) 0 50%,var(--ink) 0 75%,#C9573C 0)}
+.brand b{font:800 1.15rem/1 var(--f-display);display:block}
+.brand small{font:500 .7rem/1 var(--f-mono);letter-spacing:.1em;color:var(--stone);text-transform:uppercase}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-weight:600}
+.nav ul a{text-decoration:none}
+.nav ul a:hover{color:var(--proof)}
+.call{font:600 1rem/1 var(--f-body);background:var(--ink);color:var(--paper);padding:12px 18px;border-radius:999px;text-decoration:none;white-space:nowrap}
+@media (max-width:860px){.nav ul{display:none}}
+
+/* Hero */
+.hero{padding-block:64px 40px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(2.4rem,5.4vw,4.4rem);font-weight:800;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--paint) 62% 92%,transparent 92%)}
+.hero p.lead{font-size:1.2rem;max-width:34ch;color:var(--stone);margin:22px 0 30px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 24px;border-radius:14px;font-weight:600;text-decoration:none;border:2px solid transparent}
+.btn-paint{background:var(--paint);color:var(--ink)}
+.btn-proof{background:transparent;border-color:var(--proof);color:var(--proof)}
+.btn:hover{transform:translateY(-2px)}
+.btn{transition:transform .2s}
+
+/* Farbfächer + Messkarte */
+.stage{position:relative;min-height:420px}
+.fan{position:absolute;inset:0 30px 60px 0}
+.fan span{position:absolute;left:12%;bottom:0;width:62%;height:86%;border-radius:12px 12px 6px 6px;transform-origin:20% 100%;box-shadow:0 10px 30px rgba(20,38,46,.15);padding:14px;display:flex;align-items:flex-end;font:500 .72rem/1.3 var(--f-mono);color:rgba(0,0,0,.6)}
+.fan span:nth-child(1){background:#E9E4D6;transform:rotate(-22deg)}
+.fan span:nth-child(2){background:#C9573C;transform:rotate(-11deg);color:rgba(255,255,255,.85)}
+.fan span:nth-child(3){background:var(--paint);transform:rotate(0)}
+.fan span:nth-child(4){background:#7FA59B;transform:rotate(11deg)}
+.fan span:nth-child(5){background:var(--proof);transform:rotate(22deg);color:rgba(255,255,255,.85)}
+.meter{position:absolute;right:0;bottom:0;width:min(250px,70%);background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:0 18px 40px rgba(20,38,46,.18)}
+.meter .val{font:500 2.2rem/1 var(--f-mono);color:var(--proof);margin:10px 0 6px;font-variant-numeric:tabular-nums}
+.meter .bar{height:8px;border-radius:4px;background:linear-gradient(90deg,#7FA59B 0 55%,var(--paint) 55% 70%,#C9573C 70%);position:relative;margin:12px 0 6px}
+.meter .bar i{position:absolute;top:-5px;left:68%;width:3px;height:18px;background:var(--ink);border-radius:2px}
+.meter small{color:var(--stone);font-size:.85rem}
+
+/* Vertrauensleiste */
+.trust{border-block:1px solid var(--line);background:var(--card)}
+.trust ul{list-style:none;margin:0 auto;padding-block:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.trust li{display:flex;flex-direction:column;gap:4px}
+.trust b{font:700 1.05rem/1.2 var(--f-display)}
+.trust span{font-size:.92rem;color:var(--stone)}
+@media (max-width:760px){.trust ul{grid-template-columns:1fr 1fr}}
+
+/* Zwei Wege */
+section{padding-block:80px}
+.intro{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.intro h2{font-size:clamp(1.9rem,3.6vw,2.8rem);max-width:18ch}
+.intro p{max-width:44ch;color:var(--stone);margin:0}
+.paths{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.path{border-radius:22px;padding:36px;display:flex;flex-direction:column;gap:20px;min-width:0}
+.path-paint{background:var(--card);border:1px solid var(--line);border-top:8px solid var(--paint)}
+.path-proof{background:var(--ink);color:var(--paper);border-top:8px solid var(--proof)}
+.path-proof .label{color:#9FC2CB}
+.path h3{font-size:1.9rem}
+.path p{margin:0}
+.path-proof p{color:#C8D3D6}
+.tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.tags li{padding:7px 13px;border-radius:999px;font-size:.95rem;border:1px solid var(--line)}
+.path-proof .tags li{border-color:rgba(255,255,255,.18)}
+.path .btn{align-self:flex-start;margin-top:auto}
+.path-proof .btn-proof{border-color:#9FC2CB;color:var(--paper)}
+@media (max-width:860px){.paths,.hero-grid{grid-template-columns:1fr}.stage{min-height:340px}}
+
+/* Schimmel-Schritte */
+.mold{background:var(--card);border-block:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;counter-reset:s}
+.step{padding:28px 28px 28px 0;border-top:2px solid var(--ink);margin-right:28px}
+.step .label{color:var(--proof)}
+.step h3{font-size:1.5rem;margin:12px 0 10px}
+.step p{margin:0;color:var(--stone)}
+@media (max-width:760px){.steps{grid-template-columns:1fr}.step{margin-right:0}}
+
+/* Vorher / Nachher */
+.ba{position:relative;aspect-ratio:16/8;max-width:100%;border-radius:22px;overflow:hidden;user-select:none;background:#ccc}
+.ba .pane{position:absolute;inset:0;display:flex;align-items:flex-end;padding:20px}
+.ba .before{background:
+   radial-gradient(circle at 22% 30%,rgba(60,70,50,.55) 0 7%,transparent 14%),
+   radial-gradient(circle at 70% 64%,rgba(60,70,50,.45) 0 9%,transparent 18%),
+   radial-gradient(circle at 46% 18%,rgba(90,80,60,.35) 0 5%,transparent 11%),
+   linear-gradient(160deg,#BDB6A3,#9C9583)}
+.ba .after{background:linear-gradient(160deg,#F2EEE3,#E2DCCB);clip-path:inset(0 0 0 50%)}
+.ba .tag{font:500 .75rem/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:var(--paper);padding:8px 12px;border-radius:999px}
+.ba .after .tag{margin-left:auto}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba .handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:var(--paper);pointer-events:none}
+.ba .handle::after{content:"⇆";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:var(--paper);color:var(--ink);display:grid;place-items:center;font-size:1.2rem;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.note{font-size:.9rem;color:var(--stone);margin-top:12px}
+
+/* Kontakt */
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px}
+.facts{display:flex;flex-direction:column;gap:22px}
+.facts div{border-top:1px solid var(--line);padding-top:14px}
+.facts b{display:block;font:700 1.25rem/1.3 var(--f-display)}
+form{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:28px;display:grid;gap:16px;min-width:0}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:grid;gap:6px;font-weight:600;font-size:.95rem}
+input,select,textarea{font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);width:100%}
+textarea{min-height:110px;resize:vertical}
+.choice{display:flex;gap:10px;flex-wrap:wrap}
+.choice label{display:flex;align-items:center;gap:8px;font-weight:400;border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer}
+.choice input{width:auto}
+.sent{color:var(--proof);font-weight:600}
+@media (max-width:860px){.contact-grid,.row{grid-template-columns:1fr}}
+
+footer{background:var(--ink);color:#C8D3D6;padding-block:40px;font-size:.92rem}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="demo">ENTWURF VON WEBHAFEN · NUR ZUR VORSTELLUNG · BILDER SIND PLATZHALTER</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span><span><b>Malermeister Just</b><small>Haren (Ems)</small></span></a>
+    <ul>
+      <li><a href="#leistungen">Malerarbeiten</a></li>
+      <li><a href="#gutachten">Gutachten &amp; Schimmel</a></li>
+      <li><a href="#referenzen">Referenzen</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a class="call" href="tel:+4959321617">05932 1617</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="label">Meisterbetrieb · Sachverständiger · seit über 25 Jahren</p>
+        <h1 style="margin-top:18px">Schöne Wände.<br><em>Sichere Gutachten.</em></h1>
+        <p class="lead">Ihr Malerbetrieb in Haren – und der öffentlich bestellte Sachverständige, wenn es um Schimmel und Mängel geht.</p>
+        <div class="cta">
+          <a class="btn btn-paint" href="#kontakt">Malerarbeiten anfragen →</a>
+          <a class="btn btn-proof" href="#gutachten">Schimmel / Gutachten</a>
+        </div>
+      </div>
+      <div class="stage" aria-hidden="true">
+        <div class="fan"><span>Kalkweiß</span><span>Ziegelrot</span><span>Ocker</span><span>Salbei</span><span>Petrol</span></div>
+        <div class="meter">
+          <div class="label">Messung Raumluft</div>
+          <div class="val">68 % rF</div>
+          <div class="bar"><i></i></div>
+          <small>Erhöhte Luftfeuchte – Schimmelrisiko prüfen</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust">
+    <ul class="wrap">
+      <li><b>Meisterbetrieb</b><span>Familienbetrieb Waldemar &amp; Robert Just</span></li>
+      <li><b>Öffentlich bestellt</b><span>Sachverständiger seit 2006, HWK Osnabrück-Emsland</span></li>
+      <li><b>Über 25 Jahre</b><span>Erfahrung im Malerhandwerk</span></li>
+      <li><b>Aus Haren</b><span>Für das ganze Emsland</span></li>
+    </ul>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="intro">
+        <h2>Zwei Fachgebiete. Ein Ansprechpartner.</h2>
+        <p>Ob neue Farbe fürs Wohnzimmer oder ein Gutachten fürs Gericht: Bei uns bekommen Sie beides aus einer Hand – vom Meister persönlich.</p>
+      </div>
+      <div class="paths">
+        <article class="path path-paint" id="leistungen">
+          <p class="label">Für Ihr Zuhause</p>
+          <h3>Malerarbeiten</h3>
+          <p>Hochwertige Arbeit innen und außen – sauber, termintreu und mit ehrlicher Beratung zu Farbe und Material.</p>
+          <ul class="tags">
+            <li>Innenanstrich</li><li>Fassade</li><li>Tapezieren</li><li>Lackierarbeiten</li><li>Dekorative Techniken</li><li>Schimmelsanierung</li>
+          </ul>
+          <a class="btn btn-paint" href="#kontakt">Angebot anfragen →</a>
+        </article>
+        <article class="path path-proof" id="gutachten">
+          <p class="label">Für Streitfall &amp; Schaden</p>
+          <h3>Gutachten &amp; Schimmel</h3>
+          <p>Robert Just ist öffentlich bestellter und vereidigter Sachverständiger für das Maler- und Lackiererhandwerk – unabhängig und gerichtsfest.</p>
+          <ul class="tags">
+            <li>Gerichtsgutachten</li><li>Privatgutachten</li><li>Schiedsgutachten</li><li>Beweissicherung</li><li>Abnahmebegleitung</li><li>Rechnungsprüfung</li><li>Mediation</li>
+          </ul>
+          <a class="btn btn-proof" href="#kontakt">Gutachten anfragen →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="mold">
+    <div class="wrap">
+      <div class="intro">
+        <h2>Schimmel in der Wohnung?</h2>
+        <p>Schimmel ist kein Schönheitsfehler. Wir finden die Ursache, bewerten den Schaden und sanieren dauerhaft – alles aus einer Hand.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><p class="label">Schritt 1</p><h3>Erkennen</h3><p>Messung von Feuchte und Temperatur vor Ort, Ursache klären: Bauschaden oder Lüftung?</p></div>
+        <div class="step"><p class="label">Schritt 2</p><h3>Bewerten</h3><p>Schriftliche Einschätzung oder Gutachten – für Vermieter, Mieter, Versicherung oder Gericht.</p></div>
+        <div class="step"><p class="label">Schritt 3</p><h3>Sanieren</h3><p>Fachgerechte Beseitigung und ein Sanierungskonzept, damit der Schimmel nicht wiederkommt.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="referenzen">
+    <div class="wrap">
+      <div class="intro">
+        <h2>Vorher. Nachher.</h2>
+        <p>Ziehen Sie den Regler und sehen Sie den Unterschied. Hier zeigen wir echte Projekte aus Haren und Umgebung.</p>
+      </div>
+      <div class="ba" id="ba">
+        <div class="pane before"><span class="tag">Vorher</span></div>
+        <div class="pane after" id="after"><span class="tag">Nachher</span></div>
+        <div class="handle" id="handle"></div>
+        <input type="range" id="ba-range" min="0" max="100" value="50" aria-label="Vorher-Nachher-Vergleich">
+      </div>
+      <p class="note">Platzhalter – hier kommen Ihre eigenen Projektfotos hinein.</p>
+    </div>
+  </section>
+
+  <section id="kontakt" style="padding-top:20px">
+    <div class="wrap contact-grid">
+      <div>
+        <p class="label">Kontakt</p>
+        <h2 style="font-size:clamp(1.9rem,3.6vw,2.8rem);margin:14px 0 28px">Rufen Sie an oder schreiben Sie uns.</h2>
+        <div class="facts">
+          <div><span class="label">Telefon</span><b>05932 1617</b></div>
+          <div><span class="label">E-Mail</span><b>farbe@malermeister-just.de</b></div>
+          <div><span class="label">Adresse</span><b>Heinrichstraße 7A<br>49733 Haren (Ems)</b></div>
+        </div>
+      </div>
+      <form id="f">
+        <div class="choice" role="radiogroup" aria-label="Anliegen">
+          <label><input type="radio" name="art" id="art-maler" checked> Malerarbeiten</label>
+          <label><input type="radio" name="art" id="art-gutachten"> Gutachten</label>
+          <label><input type="radio" name="art" id="art-schimmel"> Schimmel</label>
+        </div>
+        <div class="row">
+          <label for="name">Name<input id="name" required placeholder="Ihr Name"></label>
+          <label for="tel">Telefon<input id="tel" placeholder="Für Rückfragen"></label>
+        </div>
+        <label for="msg">Ihr Anliegen<textarea id="msg" placeholder="Was dürfen wir für Sie tun?"></textarea></label>
+        <label for="foto">Fotos (optional)<input type="file" id="foto" accept="image/*" multiple></label>
+        <button class="btn btn-paint" type="submit" style="justify-self:start;cursor:pointer">Anfrage senden →</button>
+        <p class="sent" id="sent" hidden>Danke! In der fertigen Seite geht Ihre Anfrage direkt an den Betrieb.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© Malermeister Just · Heinrichstraße 7A · 49733 Haren</span>
+    <span>Impressum · Datenschutz</span>
+  </div>
+</footer>
+
+<script>
+const r=document.getElementById('ba-range'),a=document.getElementById('after'),h=document.getElementById('handle');
+r.addEventListener('input',()=>{a.style.clipPath=`inset(0 0 0 ${r.value}%)`;h.style.left=r.value+'%'});
+document.getElementById('f').addEventListener('submit',e=>{e.preventDefault();document.getElementById('sent').hidden=false});
+</script>
+</body>
+</html>
